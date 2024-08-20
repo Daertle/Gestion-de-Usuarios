@@ -44,18 +44,15 @@ CREATE TABLE INSTRUCTOR (
 );
 
 CREATE TABLE INSTRUCTOR_HORARIOS (
-    documentoHorarios VARCHAR(20),
+    documentoInstructor VARCHAR(20),
     horario VARCHAR(100),
-    PRIMARY KEY (documentoHorarios, horario),
-   CONSTRAINT fk_instructorhorarios_instructor FOREIGN KEY (documentoHorarios) REFERENCES INSTRUCTOR(documentoInstructor)
+    PRIMARY KEY (documentoInstructor, horario),
+   CONSTRAINT fk_instructorhorarios_instructor FOREIGN KEY (documentoInstructor) REFERENCES INSTRUCTOR(documentoInstructor)
 );
 
 CREATE TABLE INSTRUCTOR_CATEGORIA (
-    documentoCategoria VARCHAR(20),
+    documentoInstructor VARCHAR(20),
     categoriaClase VARCHAR(20),
-    PRIMARY KEY (documentoCategoria, categoriaClase),
-    CONSTRAINT fk_instructorcategoria_instructor FOREIGN KEY (documentoCategoria) REFERENCES INSTRUCTOR(documentoInstructor)
+    PRIMARY KEY (documentoInstructor, categoriaClase),
+    CONSTRAINT fk_instructorcategoria_instructor FOREIGN KEY (documentoInstructor) REFERENCES INSTRUCTOR(documentoInstructor)
 );
-
-
-

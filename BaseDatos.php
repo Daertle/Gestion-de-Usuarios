@@ -24,6 +24,9 @@ class BaseDatos {
 	    return $conectar;
     }	
 /******************************************************************************************************************************************/
+
+// Altas de Usuarios en Tablas   
+
     public function ingresarAlumno($usuario) {
         $documento = $usuario->getDocumento();
         $nombre = $usuario->getNombre();
@@ -97,6 +100,38 @@ class BaseDatos {
 
         $insertar = "insert into administrador values('$documento','$nombre','$apellido','$fechaNac','$telefono','$correo','$username','$password','$permisos')";
     	return mysqli_query($this->conexion, $insertar);
+    }
+
+// Bajas de Usuarios en Tablas
+
+    public function eliminarAlumno($documento) {
+        $eliminar = "delete from alumno where documentoAlumno = '$documento'";
+        return mysqli_query($this->conexion, $eliminar);
+    }
+
+    public function eliminarInstructor($documento) {
+        $eliminar = "delete from instructor where documentoInstructor = '$documento'";
+        return mysqli_query($this->conexion, $eliminar);
+    }
+
+    public function eliminarAdministrador($documento) {
+        $eliminar = "delete from administrador where documentoAdmin = '$documento'";
+        return mysqli_query($this->conexion, $eliminar);
+    }
+
+    public function eliminarCategoriaAlumno($documento) {
+        $eliminar = "delete from alumno_libreta where documentoAlumno = '$documento'";
+        return mysqli_query($this->conexion, $eliminar);
+    }
+
+    public function eliminarCategoriaInstructor($documento) {
+        $eliminar = "delete from instructor_categoria where documentoInstructor = '$documento'";
+        return mysqli_query($this->conexion, $eliminar);
+    }
+
+    public function eliminarHorariosInstructor($documento) {
+        $eliminar = "delete from instructor_horarios where documentoInstructor = '$documento'";
+        return mysqli_query($this->conexion, $eliminar);
     }
 
 /********************************************************************************/

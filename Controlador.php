@@ -38,6 +38,24 @@
             $administrador = new Administrador($permisos, $documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password);
             $this->base->ingresarAdministrador($administrador);
         }
+
+        /* Baja Usuarios */
+
+        public function bajaAlumno(String $documento){
+            $this->base->eliminarCategoriaAlumno($documento);
+            $this->base->eliminarAlumno($documento);
+        }
+
+        public function bajaInstructor(String $documento){
+            $this->base->eliminarCategoriaInstructor($documento);
+            $this->base->eliminarHorariosInstructor($documento);
+            $this->base->eliminarInstructor($documento);
+        }
+
+        public function bajaAdministrador(String $documento){
+            $this->base->eliminarAdministrador($documento);
+        }
+
         
         /* Traer Tabla */
 
