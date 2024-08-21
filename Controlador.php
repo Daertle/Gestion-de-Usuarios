@@ -56,6 +56,19 @@
             $this->base->eliminarAdministrador($documento);
         }
 
+        /* Modificar Usuarios */
+
+        public function modificarAlumno($documento, $dato, $nuevo){
+            $this->base->modificarAlumno($documento, $dato, $nuevo);
+        }
+
+        public function modificarInstructor($documento, $dato, $nuevo){
+            $this->base->modificarInstructor($documento, $dato, $nuevo);
+        }
+
+        public function modificarAdministrador($documento, $dato, $nuevo){
+            $this->base->modificarAdministrador($documento, $dato, $nuevo);
+        }
         
         /* Traer Tabla */
 

@@ -134,6 +134,112 @@ class BaseDatos {
         return mysqli_query($this->conexion, $eliminar);
     }
 
+// Modificaciones de Usuarios en Tablas
+
+public function modificarAlumno($documento, $dato, $nuevo) {
+    switch ($dato) {
+        case 'nombre':
+            $modificar = "update alumno set nombre = '$nuevo' where documentoAlumno = '$documento'";                    
+        break;
+        case 'apellido':
+            $modificar = "update alumno set apellido = '$nuevo' where documentoAlumno = '$documento'";                    
+        break;
+        case 'fechaNacimiento':
+            $modificar = "update alumno set fechaNacimiento = '$nuevo' where documentoAlumno = '$documento'";
+        break;
+        case 'telefono':
+            $modificar = "update alumno set telefono = '$nuevo' where documentoAlumno = '$documento'";
+        break;
+        case 'correo':
+            $modificar = "update alumno set correo = '$nuevo' where documentoAlumno = '$documento'";
+        break;
+        case 'username':
+            $modificar = "update alumno set username = '$nuevo' where documentoAlumno = '$documento'";
+        break;
+        case 'passwrd':
+            $modificar = "update alumno set passwrd = '$nuevo' where documentoAlumno = '$documento'";
+        break;
+        case 'estadoTeorico':
+            $modificar = "update alumno set estadoTeorico = '$nuevo' where documentoAlumno = '$documento'";
+        break;
+        
+        case 'categoriaLibreta':
+            $modificar = "update alumno_libreta set categoriaLibreta = '$nuevo' where documentoAlumno = '$documento'";
+        break;
+        }
+    return mysqli_query($this->conexion, $modificar);
+}
+
+public function modificarInstructor($documento, $dato, $nuevo) {
+    switch ($dato) {
+        case 'nombre':
+            $modificar = "update instructor set nombre = '$nuevo' where documentoInstructor = '$documento'";                    
+        break;
+        case 'apellido':
+            $modificar = "update instructor set apellido = '$nuevo' where documentoInstructor = '$documento'";                    
+        break;
+        case 'fechaNacimiento':
+            $modificar = "update instructor set fechaNacimiento = '$nuevo' where documentoInstructor = '$documento'";
+        break;
+        case 'telefono':
+            $modificar = "update instructor set telefono = '$nuevo' where documentoInstructor = '$documento'";
+        break;
+        case 'correo':
+            $modificar = "update instructor set correo = '$nuevo' where documentoInstructor = '$documento'";
+        break;
+        case 'username':
+            $modificar = "update instructor set username = '$nuevo' where documentoInstructor = '$documento'";
+        break;
+        case 'password':
+            $modificar = "update instructor set password = '$nuevo' where documentoInstructor = '$documento'";
+        break;
+        
+        case 'categoriaClase':
+            $modificar = "update instructor_categoria set categoriaClase = '$nuevo' where documentoInstructor = '$documento'" + "";
+        break;
+
+        case 'horarios':
+            $this->eliminarHorariosInstructor($documento);
+            for ($i=0; $i < count($nuevo) ; $i++) {
+                $modificar = "insert into instructor_horarios values('$documento','$nuevo[$i]')";
+            }
+        break;
+    }
+    return mysqli_query($this->conexion, $modificar);
+}
+
+public function modificarAdministrador($documento, $dato, $nuevo) {
+    switch ($dato) {
+        case 'nombre':
+            $modificar = "update administrador set nombre = '$nuevo' where documentoAdmin = '$documento'";                    
+        break;
+        case 'apellido':
+            $modificar = "update administrador set apellido = '$nuevo' where documentoAdmin = '$documento'";                    
+        break;
+        case 'fechaNacimiento':
+            $modificar = "update administrador set fechaNacimiento = '$nuevo' where documentoAdmin = '$documento'";
+        break;
+        case 'telefono':
+            $modificar = "update administrador set telefono = '$nuevo' where documentoAdmin = '$documento'";
+        break;
+        case 'correo':
+            $modificar = "update administrador set correo = '$nuevo' where documentoAdmin = '$documento'";
+        break;
+        case 'username':
+            $modificar = "update administrador set username = '$nuevo' where documentoAdmin = '$documento'";
+        break;
+        case 'password':
+            $modificar = "update administrador set password = '$nuevo' where documentoAdmin = '$documento'";
+        break;
+        case 'permisos':
+            $modificar = "update administrador set permisos = '$nuevo' where documentoAdmin = '$documento'";
+        break;
+    }
+    return mysqli_query($this->conexion, $modificar);
+}
+
+
+
 /********************************************************************************/
     public function seleccionarAlumnos() {
     	$resultadoAlumnos = mysqli_query($this->conexion, "select * from alumno");
