@@ -15,9 +15,9 @@
     $correo = $_POST['txtCorreo'];
     $username = $_POST['txtUsername'];
     $password = $_POST['txtPassword'];    
+    $permisos = $_POST['txtPermisos'];
 
     $estTeorico = $_POST['txtEstadoTeorico'];
-    $permisos = $_POST['txtPermisos'];
 
     $catA = $_POST['txtA'];
     $catB = $_POST['txtB'];
@@ -53,11 +53,11 @@
     if ($catC == "on") array_push($categoriaLibreta, "Libreta C");
 
     if ($tipo == "alumno") {
-        $controla->altaAlumno($documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password, $categoriaLibreta ,$estTeorico);
+        $controla->altaAlumno($documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password, $categoriaLibreta ,$estTeorico, $permisos);
     } else if($tipo == "instructor") { 
-        $controla->altaInstructor($horarios, $categoriaClase, $documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password);
+        $controla->altaInstructor($horarios, $categoriaClase, $documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password, $permisos,);
     } else if($tipo == "administrador") {
-        $controla->altaAdministrador($permisos, $documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password);
+        $controla->altaAdministrador($documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password, $permisos);
     }
 
     header('Location: vista.html.php');

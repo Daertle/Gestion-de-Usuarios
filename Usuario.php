@@ -8,10 +8,10 @@ class Usuario {
     private String $correo;
     private String $username;
     private String $password;
-    
+    private String $permisos;    
 
-    public function __construct(String $documento, String $nombre, String $apellido, String $fecha_nac, String $telefono, String $correo, String $username, String $password){
-        echo $documento;
+    public function __construct(String $documento, String $nombre, String $apellido, String $fecha_nac, String $telefono, String $correo, String $username, String $password, String $permisos){
+
         $this->documento = $documento;
         $this->nombre = $nombre;
         $this->apellido = $apellido;    
@@ -20,6 +20,7 @@ class Usuario {
         $this->correo = $correo;
         $this->username = $username;
         $this->password = $password;  
+        $this->permisos = $permisos;
     }
 
 /* Getters */
@@ -48,15 +49,17 @@ class Usuario {
         return $this->correo;
     }
 
-    public function getUsername() {
+    public function getUsername(){
         return $this->username;
     }
 
-    public function getPassword() {
+    public function getPassword(){
         return $this->password;
     }
 
-    
+    public function getPermisos(){
+        return $this->permisos;
+    }
 
 
 /* Setters */
@@ -93,7 +96,11 @@ class Usuario {
         $this->password = $pwd;
     }
 
-/* To String */
+    public function setPermisos(String $perm) {
+        $this->permisos = $perm;
+    }
+
+    /* To String */
 
     public function __toString(){
         return ($this->documento.",".$this->nombre.",".$this->apellido.",".$this->fecha_nac.",".$this->telefono.",".$this->correo.",".$this->username.",".$this->password);

@@ -18,15 +18,15 @@
 
         /* Alta Usuarios */
 
-        public function altaAlumno(string $documento, string $nombre, string $apellido, string $fecha_nac, string $telefono, string $correo, string $username, string $password, array $categoriaLibreta, string $estadoTeorico){
-            $alumno = new Alumno($estadoTeorico, $documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password);
+        public function altaAlumno(string $documento, string $nombre, string $apellido, string $fecha_nac, string $telefono, string $correo, string $username, string $password, array $categoriaLibreta, string $estadoTeorico, string $permisos){
+            $alumno = new Alumno($estadoTeorico, $documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password, $permisos);
             $this->base->ingresarAlumno($alumno);
             $alumno -> setCategoriaLibreta($categoriaLibreta);
             $this->base->ingresarCategoriaAlumnos($alumno);
         }
         
-        public function altaInstructor(array $horarios, array $categoriaClase, String $documento, String $nombre, String $apellido, String $fecha_nac, String $telefono, String $correo, String $username, String $password){
-            $instructor = new Instructor($documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password);
+        public function altaInstructor(array $horarios, array $categoriaClase, String $documento, String $nombre, String $apellido, String $fecha_nac, String $telefono, String $correo, String $username, String $password, string $permisos){
+            $instructor = new Instructor($documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password, $permisos);
             $this->base->ingresarInstructor($instructor);
             $instructor -> setCategoriaClase($categoriaClase);
             $this->base->ingresarCategoriaInstructores($instructor);
@@ -34,8 +34,8 @@
             $this->base->ingresarHorariosInstructores($instructor);
         }
 
-        public function altaAdministrador(String $permisos, String $documento, String $nombre, String $apellido, String $fecha_nac, String $telefono, String $correo, String $username, String $password){
-            $administrador = new Administrador($permisos, $documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password);
+        public function altaAdministrador(String $documento, String $nombre, String $apellido, String $fecha_nac, String $telefono, String $correo, String $username, String $password, String $permisos){
+            $administrador = new Administrador($documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password, $permisos);
             $this->base->ingresarAdministrador($administrador);
         }
 
@@ -68,6 +68,13 @@
 
         public function modificarAdministrador($documento, $dato, $nuevo){
             $this->base->modificarAdministrador($documento, $dato, $nuevo);
+        }
+
+        /* LogIn */
+
+        public function logIn(String $username, String $password){
+            $usuario = $this->base->comprobarUsuario($username, $password);
+            return $usuario;
         }
         
         /* Traer Tabla */

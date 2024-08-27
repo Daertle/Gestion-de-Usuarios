@@ -10,7 +10,8 @@ CREATE TABLE ALUMNO (
     correo VARCHAR(100) NOT NULL,
     username VARCHAR(50) NOT NULL,
     passwrd VARCHAR(50) NOT NULL,
-    estadoTeorico VARCHAR(20)
+    estadoTeorico VARCHAR(20),
+    permisos VARCHAR(20) NOT NULL
     );
 
 CREATE TABLE ALUMNO_LIBRETA (
@@ -40,7 +41,8 @@ CREATE TABLE INSTRUCTOR (
     telefono INT NOT NULL,
     correo VARCHAR(100) NOT NULL,
     username VARCHAR(50) NOT NULL,
-    passwrd VARCHAR(50) NOT NULL
+    passwrd VARCHAR(50) NOT NULL,
+    permisos VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE INSTRUCTOR_HORARIOS (

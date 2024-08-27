@@ -12,6 +12,7 @@
     $dato = $_POST['txtDato'];
 
     $estTeorico = $_POST['txtEstadoTeorico'];
+  
     $permisos = $_POST['txtPermisos'];
 
     $catA = $_POST['txtA'];

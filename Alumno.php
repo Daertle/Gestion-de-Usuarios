@@ -5,8 +5,8 @@ class Alumno extends Usuario {
     private string $estadoTeorico;
     private array $categoriaLibreta;
         
-    public function __construct(string $estadoTeorico, string $documento, string $nombre, string $apellido, string $fecha_nac, string $telefono, string $correo, string $username, string $password){
-        parent::__construct($documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password);
+    public function __construct(string $estadoTeorico, string $documento, string $nombre, string $apellido, string $fecha_nac, string $telefono, string $correo, string $username, string $password, String $permisos){
+        parent::__construct($documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password, $permisos);
             
         $this->estadoTeorico = $estadoTeorico;
     }

@@ -5,8 +5,8 @@ class Instructor extends Usuario {
         private array $horarios;
         private array $categoriaClase;
         
-    public function __construct(String $documento, String $nombre, String $apellido, String $fecha_nac, String $telefono, String $correo, String $username, String $password){
-        parent::__construct($documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password);
+    public function __construct(String $documento, String $nombre, String $apellido, String $fecha_nac, String $telefono, String $correo, String $username, String $password, String $permisos){
+        parent::__construct($documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password, $permisos);
     }
 
     /* Getters */

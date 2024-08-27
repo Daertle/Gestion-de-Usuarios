@@ -26,7 +26,12 @@ class BaseDatos {
 /******************************************************************************************************************************************/
 
 // Altas de Usuarios en Tablas   
-
+    
+    /**
+     * 
+     * 
+     * @param type $usuario
+     */
     public function ingresarAlumno($usuario) {
         $documento = $usuario->getDocumento();
         $nombre = $usuario->getNombre();
@@ -37,8 +42,9 @@ class BaseDatos {
         $username = $usuario->getUsername();
         $password = $usuario->getPassword();
         $estadoTeorico = $usuario->getEstadoTeorico();
+        $permisos = $usuario->getPermisos();
 
-        $insertar = "insert into alumno values('$documento','$nombre','$apellido','$fechaNac','$telefono','$correo','$username','$password','$estadoTeorico')";
+        $insertar = "insert into alumno values('$documento','$nombre','$apellido','$fechaNac','$telefono','$correo','$username','$password','$estadoTeorico','$permisos')";
     	return mysqli_query($this->conexion, $insertar);
     }
 
@@ -62,8 +68,9 @@ class BaseDatos {
         $correo = $usuario->getCorreo();
         $username = $usuario->getUsername();
         $password = $usuario->getPassword();
-
-        $insertar = "insert into instructor values('$documento','$nombre','$apellido','$fechaNac','$telefono','$correo','$username','$password')";
+        $permisos = $usuario->getPermisos();
+        
+        $insertar = "insert into instructor values('$documento','$nombre','$apellido','$fechaNac','$telefono','$correo','$username','$password','$permisos')";
     	return mysqli_query($this->conexion, $insertar);
     }
 
@@ -173,6 +180,11 @@ public function modificarAlumno($documento, $dato, $nuevo) {
             mysqli_query($this->conexion, $modificar);
         break;
 
+        case 'permisos':
+            $modificar = "update alumno set permisos = '$nuevo' where documentoAlumno = '$documento'";
+            mysqli_query($this->conexion, $modificar);
+        break;
+
         case 'estadoTeorico':
             $modificar = "update alumno set estadoTeorico = '$nuevo' where documentoAlumno = '$documento'";
             mysqli_query($this->conexion, $modificar);
@@ -224,7 +236,13 @@ public function modificarInstructor($documento, $dato, $nuevo) {
             $modificar = "update instructor set password = '$nuevo' where documentoInstructor = '$documento'";
             mysqli_query($this->conexion, $modificar);
         break;
-        
+
+        case 'permisos':
+            $modificar = "update instructor set permisos = '$nuevo' where documentoInstructor = '$documento'";
+            mysqli_query($this->conexion, $modificar);
+        break;
+
+
         case 'categoriaClase':
             $this->eliminarCategoriaInstructor($documento);
             for ($i=0; $i < count($nuevo) ; $i++) {
@@ -287,6 +305,35 @@ public function modificarAdministrador($documento, $dato, $nuevo) {
     }
 }
 
+
+// LogIn
+
+    public function logueo($username, $password) {
+    
+        $consulta = "select * from alumno where username = '$username' and password = '$password'";
+        $resultado = mysqli_query($this->conexion, $consulta);
+        $arreglo = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+        if (count($arreglo) == 0) {
+            $consulta = "select * from instructor where username = '$username' and password = '$password'";
+            $resultado = mysqli_query($this->conexion, $consulta);
+            $arreglo = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+            if (count($arreglo) == 0) {
+                $consulta = "select * from administrador where username = '$username' and password = '$password'";
+                $resultado = mysqli_query($this->conexion, $consulta);
+                $arreglo = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+                if (count($arreglo) == 0) {
+                    return null;
+                } else {
+                    return $arreglo;
+                }
+            } else {
+                return $arreglo;
+            }
+        } else {
+            return $arreglo;
+        }
+    }
+     
 
 
 /********************************************************************************/
