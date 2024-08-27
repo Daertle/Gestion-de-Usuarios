@@ -308,15 +308,17 @@ public function modificarAdministrador($documento, $dato, $nuevo) {
 
 // LogIn
 
-    public function logueo($username, $password) {
+    public function comprobarUsuario($username, $password) {
     
         $consulta = "select * from alumno where username = '$username' and password = '$password'";
         $resultado = mysqli_query($this->conexion, $consulta);
         $arreglo = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+        
         if (count($arreglo) == 0) {
             $consulta = "select * from instructor where username = '$username' and password = '$password'";
             $resultado = mysqli_query($this->conexion, $consulta);
             $arreglo = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+            
             if (count($arreglo) == 0) {
                 $consulta = "select * from administrador where username = '$username' and password = '$password'";
                 $resultado = mysqli_query($this->conexion, $consulta);
@@ -326,6 +328,7 @@ public function modificarAdministrador($documento, $dato, $nuevo) {
                 } else {
                     return $arreglo;
                 }
+
             } else {
                 return $arreglo;
             }

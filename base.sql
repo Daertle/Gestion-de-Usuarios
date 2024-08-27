@@ -2,7 +2,7 @@ CREATE DATABASE luxurydriving;
 USE luxurydriving;
 
 CREATE TABLE ALUMNO (
-    documentoAlumno VARCHAR(20) PRIMARY KEY,
+    documentoAlumno VARCHAR(20),
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     fechaNacimiento DATE NOT NULL,
@@ -11,7 +11,8 @@ CREATE TABLE ALUMNO (
     username VARCHAR(50) NOT NULL,
     passwrd VARCHAR(50) NOT NULL,
     estadoTeorico VARCHAR(20),
-    permisos VARCHAR(20) NOT NULL
+    permisos VARCHAR(20) NOT NULL,
+    PRIMARY KEY (documentoAlumno, username)
     );
 
 CREATE TABLE ALUMNO_LIBRETA (
@@ -22,7 +23,7 @@ CREATE TABLE ALUMNO_LIBRETA (
 );
 
 CREATE TABLE ADMINISTRADOR (
-    documentoAdmin VARCHAR(20) PRIMARY KEY,
+    documentoAdmin VARCHAR(20),
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     fechaNacimiento DATE NOT NULL,
@@ -30,11 +31,12 @@ CREATE TABLE ADMINISTRADOR (
     correo VARCHAR(100) NOT NULL,
     username VARCHAR(50) NOT NULL,
     passwrd VARCHAR(50) NOT NULL,   
-    permisos VARCHAR(20) NOT NULL
+    permisos VARCHAR(20) NOT NULL,
+    PRIMARY KEY (documentoAdmin, username)
 );
 
 CREATE TABLE INSTRUCTOR (
-    documentoInstructor VARCHAR(20) PRIMARY KEY,
+    documentoInstructor VARCHAR(20),
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     fechaNacimiento DATE NOT NULL,
@@ -42,7 +44,8 @@ CREATE TABLE INSTRUCTOR (
     correo VARCHAR(100) NOT NULL,
     username VARCHAR(50) NOT NULL,
     passwrd VARCHAR(50) NOT NULL,
-    permisos VARCHAR(20) NOT NULL
+    permisos VARCHAR(20) NOT NULL,
+    PRIMARY KEY (documentoInstructor, username)
 );
 
 CREATE TABLE INSTRUCTOR_HORARIOS (
@@ -58,3 +61,4 @@ CREATE TABLE INSTRUCTOR_CATEGORIA (
     PRIMARY KEY (documentoInstructor, categoriaClase),
     CONSTRAINT fk_instructorcategoria_instructor FOREIGN KEY (documentoInstructor) REFERENCES INSTRUCTOR(documentoInstructor)
 );
+
