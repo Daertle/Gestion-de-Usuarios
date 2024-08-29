@@ -18,8 +18,11 @@
 
         /* Alta Usuarios */
 
-        public function altaAlumno(string $documento, string $nombre, string $apellido, string $fecha_nac, string $telefono, string $correo, string $username, string $password, array $categoriaLibreta, string $estadoTeorico, string $permisos){
-            $alumno = new Alumno($estadoTeorico, $documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password, $permisos);
+        public function altaAlumno(string $documento, string $nombre, string $apellido, string $fecha_nac, string $telefono, string $correo, string $username, string $password, array $categoriaLibreta, string $estadoTeorico, string $permisos, string $fechaIns){
+            $alumno = new Alumno($estadoTeorico, $documento, $nombre, $apellido, $fecha_nac, $telefono, $correo, $username, $password, $permisos, $fechaIns);
+            echo('<pre>');
+            echo($alumno);
+            echo('</pre>');
             $this->base->ingresarAlumno($alumno);
             $alumno -> setCategoriaLibreta($categoriaLibreta);
             $this->base->ingresarCategoriaAlumnos($alumno);

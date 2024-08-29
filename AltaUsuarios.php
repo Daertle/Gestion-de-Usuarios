@@ -17,6 +17,7 @@
     $password = $_POST['txtPassword'];    
     $permisos = $_POST['txtPermisos'];
 
+    $fechaIns = $_POST['txtFI'];
     $estTeorico = $_POST['txtEstadoTeorico'];
 
     $catA = $_POST['txtA'];
@@ -53,7 +54,7 @@
     if ($catC == "on") array_push($categoriaLibreta, "Libreta C");
 
     if ($tipo == "alumno") {
-        $controla->altaAlumno($documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password, $categoriaLibreta ,$estTeorico, $permisos);
+        $controla->altaAlumno($documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password, $categoriaLibreta ,$estTeorico, $permisos, $fechaIns);
     } else if($tipo == "instructor") { 
         $controla->altaInstructor($horarios, $categoriaClase, $documento, $nombre, $apellido, $fechaNac, $telefono, $correo, $username, $password, $permisos,);
     } else if($tipo == "administrador") {

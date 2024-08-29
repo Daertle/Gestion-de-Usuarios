@@ -43,8 +43,9 @@ class BaseDatos {
         $password = $usuario->getPassword();
         $estadoTeorico = $usuario->getEstadoTeorico();
         $permisos = $usuario->getPermisos();
+        $fechaIns = $usuario->getFechaIns();
 
-        $insertar = "insert into alumno values('$documento','$nombre','$apellido','$fechaNac','$telefono','$correo','$username','$password','$estadoTeorico','$permisos')";
+        $insertar = "insert into alumno values('$documento','$nombre','$apellido','$fechaNac','$telefono','$correo','$username','$password','$estadoTeorico','$permisos', '$fechaIns')";
     	return mysqli_query($this->conexion, $insertar);
     }
 
@@ -184,6 +185,10 @@ public function modificarAlumno($documento, $dato, $nuevo) {
             $modificar = "update alumno set permisos = '$nuevo' where documentoAlumno = '$documento'";
             mysqli_query($this->conexion, $modificar);
         break;
+
+        case 'fechaInscripcion':
+            $modificar = "update alumno set fechaInscripcion = '$nuevo' where documentoAlumno = '$documento'";
+            mysqli_query($this->conexion, $modificar);
 
         case 'estadoTeorico':
             $modificar = "update alumno set estadoTeorico = '$nuevo' where documentoAlumno = '$documento'";
